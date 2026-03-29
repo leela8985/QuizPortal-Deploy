@@ -33,4 +33,8 @@ class Database:
     def otps(self):
         return self.get_db()['otps']
 
+    @property
+    def violation_logs(self):
+        return self.get_db()['violation_logs']
+
 db = Database()

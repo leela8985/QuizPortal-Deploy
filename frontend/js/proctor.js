@@ -138,8 +138,11 @@ async function verifyIdentity(videoElementId, profileImgUrl) {
         // 1. Get reference descriptor from profile image
         if (!proctorState.referenceDescriptor) {
             console.log("Fetching profile image descriptor...");
-            // Ensure URL is absolute if it starts with /uploads
-            const fullUrl = profileImgUrl.startsWith('http') ? profileImgUrl : window.location.origin + profileImgUrl;
+            // Correctly handle absolute URLs, data URLs, or relative paths
+            let fullUrl = profileImgUrl;
+            if (!profileImgUrl.startsWith('http') && !profileImgUrl.startsWith('data:')) {
+                fullUrl = window.location.origin + profileImgUrl;
+            }
             proctorState.referenceDescriptor = await getFaceDescriptorFromImage(fullUrl);
         }
 
