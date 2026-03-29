@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizPortal — Login</title>
+    <meta name="description" content="QuizPortal: Secure login for Faculty and Students. Take quizzes, upload questions, and track academic performance.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+    <div class="auth-bg">
+        <div class="bg-blob blob1"></div>
+        <div class="bg-blob blob2"></div>
+        <div class="bg-blob blob3"></div>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card" id="auth-card">
+
+            <!-- ===== BACK TO HOME ===== -->
+            <a href="index.html" class="back-btn" style="margin-bottom: 24px; display: inline-flex; align-items: center; gap: 8px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><polyline points="15 18 9 12 15 6"/></svg>
+                Back to Home
+            </a>
+
+            <!-- ===== LOGO ===== -->
+            <div class="auth-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="12" fill="url(#logoGrad)"/>
+                        <path d="M12 14h16M12 20h10M12 26h13" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="29" cy="26" r="5" fill="white" opacity="0.9"/>
+                        <path d="M27 26l1.5 1.5L31 24" stroke="#6C63FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#4ECDC4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1 class="logo-text">QuizPortal</h1>
+                <p class="logo-sub">Smart Learning Platform</p>
+            </div>
+
+            <!-- ===== ROLE TOGGLE ===== -->
+            <div class="role-toggle">
+                <button class="role-btn active" id="btn-student" onclick="switchRole('student')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+                    Student
+                </button>
+                <button class="role-btn" id="btn-faculty" onclick="switchRole('faculty')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    Faculty
+                </button>
+            </div>
+
+            <!-- ===== MAIN AUTH PANEL (Login / Register) ===== -->
+            <div id="main-panel">
+                <div class="tab-switcher">
+                    <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Sign In</button>
+                    <button class="tab-btn" id="tab-register" onclick="switchTab('register')">Register</button>
+                </div>
+
+                <div class="alert-box" id="alert-box" style="display:none"></div>
+
+                <!-- Login Form -->
+                <form class="auth-form" id="login-form" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <input type="email" id="login-email" placeholder="your@email.com" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">
+                            Password
+                            <button type="button" class="forgot-link" onclick="showForgotPanel()">Forgot password?</button>
+                        </label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                            <input type="password" id="login-password" placeholder="Enter your password" required autocomplete="current-password">
+                            <button type="button" class="eye-btn" onclick="togglePassword('login-password', this)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn" id="login-btn">
+                        <span class="btn-text">Sign In</span>
+                        <div class="btn-loader" style="display:none"></div>
+                    </button>
+                </form>
+
+                <!-- Register Form -->
+                <form class="auth-form" id="register-form" style="display:none" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="reg-name">Full Name</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <input type="text" id="reg-name" placeholder="Your full name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email Address</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <input type="email" id="reg-email" placeholder="your@email.com" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                            <input type="password" id="reg-password" placeholder="Create a strong password" required autocomplete="new-password">
+                            <button type="button" class="eye-btn" onclick="togglePassword('reg-password', this)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn" id="reg-btn">
+                        <span class="btn-text">Create Account</span>
+                        <div class="btn-loader" style="display:none"></div>
+                    </button>
+                </form>
+
+            </div>
+
+            <!-- ===== FORGOT PASSWORD PANEL ===== -->
+            <div id="forgot-panel" style="display:none;">
+                <!-- Step 1: Enter Email -->
+                <div id="forgot-step-1">
+                    <div class="fp-header">
+                        <button class="back-btn" onclick="showMainPanel()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg>
+                            Back
+                        </button>
+                        <div class="fp-icon">🔐</div>
+                        <h2 class="fp-title">Forgot Password?</h2>
+                        <p class="fp-sub">Enter your registered email and we'll send a 6-digit OTP</p>
+                    </div>
+                    <div class="alert-box" id="fp-alert-1" style="display:none"></div>
+                    <div class="form-group">
+                        <label for="fp-email">Email Address</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <input type="email" id="fp-email" placeholder="your@email.com" autocomplete="email">
+                        </div>
+                    </div>
+                    <button class="submit-btn" id="fp-send-btn" onclick="sendOTP()">
+                        <span class="btn-text">Send OTP</span>
+                        <div class="btn-loader" style="display:none"></div>
+                    </button>
+                </div>
+
+                <!-- Step 2: Enter OTP -->
+                <div id="forgot-step-2" style="display:none;">
+                    <div class="fp-header">
+                        <button class="back-btn" onclick="showForgotStep(1)">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg>
+                            Back
+                        </button>
+                        <div class="fp-icon">📧</div>
+                        <h2 class="fp-title">Check Your Email</h2>
+                        <p class="fp-sub" id="otp-sent-msg">Enter the 6-digit OTP sent to your email</p>
+                    </div>
+                    <div class="alert-box" id="fp-alert-2" style="display:none"></div>
+                    <div class="otp-inputs" id="otp-inputs">
+                        <input class="otp-box" id="otp-0" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" oninput="otpInput(this, 0)" onkeydown="otpKeydown(event, 0)">
+                        <input class="otp-box" id="otp-1" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" oninput="otpInput(this, 1)" onkeydown="otpKeydown(event, 1)">
+                        <input class="otp-box" id="otp-2" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" oninput="otpInput(this, 2)" onkeydown="otpKeydown(event, 2)">
+                        <input class="otp-box" id="otp-3" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" oninput="otpInput(this, 3)" onkeydown="otpKeydown(event, 3)">
+                        <input class="otp-box" id="otp-4" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" oninput="otpInput(this, 4)" onkeydown="otpKeydown(event, 4)">
+                        <input class="otp-box" id="otp-5" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" oninput="otpInput(this, 5)" onkeydown="otpKeydown(event, 5)">
+                    </div>
+                    <div class="otp-timer-wrap">
+                        <span id="otp-timer-text">Resend OTP in </span>
+                        <span id="otp-countdown" class="otp-countdown">2:00</span>
+                        <button type="button" id="resend-btn" class="resend-btn" style="display:none" onclick="resendOTP()">Resend OTP</button>
+                    </div>
+                    <button class="submit-btn" id="fp-verify-btn" onclick="verifyOTP()">
+                        <span class="btn-text">Verify OTP</span>
+                        <div class="btn-loader" style="display:none"></div>
+                    </button>
+                </div>
+
+                <!-- Step 3: New Password -->
+                <div id="forgot-step-3" style="display:none;">
+                    <div class="fp-header">
+                        <div class="fp-icon">🔒</div>
+                        <h2 class="fp-title">New Password</h2>
+                        <p class="fp-sub">Create a strong new password for your account</p>
+                    </div>
+                    <div class="alert-box" id="fp-alert-3" style="display:none"></div>
+                    <div class="form-group">
+                        <label for="fp-new-pass">New Password</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                            <input type="password" id="fp-new-pass" placeholder="At least 6 characters" autocomplete="new-password">
+                            <button type="button" class="eye-btn" onclick="togglePassword('fp-new-pass', this)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fp-confirm-pass">Confirm Password</label>
+                        <div class="input-wrap">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                            <input type="password" id="fp-confirm-pass" placeholder="Re-enter password" autocomplete="new-password">
+                            <button type="button" class="eye-btn" onclick="togglePassword('fp-confirm-pass', this)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="submit-btn" id="fp-reset-btn" onclick="resetPassword()">
+                        <span class="btn-text">Reset Password</span>
+                        <div class="btn-loader" style="display:none"></div>
+                    </button>
+                </div>
+            </div>
+
+        </div><!-- /auth-card -->
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // Check for register hash or local storage flag
+        window.addEventListener('load', () => {
+            if (window.location.hash === '#register' || localStorage.getItem('authTab') === 'register') {
+                switchTab('register');
+                localStorage.removeItem('authTab');
+            }
+        });
+    </script>
+</body>
+</html>

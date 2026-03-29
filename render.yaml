@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: quiz-portal
+    env: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn --chdir backend app:app
+    envVars:
+      - key: MONGO_URI
+        sync: false # User should set this in Render UI
+      - key: SECRET_KEY
+        generateValue: true
+      - key: MAIL_EMAIL
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.10.0

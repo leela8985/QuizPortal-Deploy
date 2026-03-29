@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizPortal — AI-Powered Learning Platform</title>
+    <meta name="description" content="Elevate your academic experience with QuizPortal. Secure, AI-proctored quizzes with real-time performance analytics for students and faculty.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/landing.css">
+</head>
+<body class="landing-page">
+    <div class="auth-bg">
+        <div class="bg-blob blob1"></div>
+        <div class="bg-blob blob2"></div>
+        <div class="bg-blob blob3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="auth-logo" style="margin-bottom: 0; text-align: left; display: flex; align-items: center; gap: 10px;">
+            <div class="logo-icon" style="margin-bottom: 0;">
+                <svg viewBox="0 0 40 40" fill="none" style="width: 32px; height: 32px;">
+                    <rect width="40" height="40" rx="12" fill="url(#logoGrad)"/>
+                    <path d="M12 14h16M12 20h10M12 26h13" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="29" cy="26" r="5" fill="white" opacity="0.9"/>
+                    <path d="M27 26l1.5 1.5L31 24" stroke="#6C63FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#4ECDC4"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1 class="logo-text" style="font-size: 22px;">QuizPortal</h1>
+        </div>
+
+     
+
+        <div class="nav-cta">
+            <a href="login.html" class="btn btn-outline">Sign In</a>
+
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="badge badge-primary" style="margin-bottom: 20px;">AI-PROCTORED EXAMS</span>
+                <h1>Transforming the Way You Learn & Evaluate</h1>
+                <p>The smartest quiz portal built for modern students and faculty. Secure, reliable, and powered by artificial intelligence to ensure academic integrity.</p>
+                <div class="hero-btns">
+                    <a href="login.html" class="btn btn-primary" style="padding: 16px 32px; font-size: 16px;">Start Your First Quiz</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="img/hero.png" alt="QuizPortal Hero Visual" class="hero-image">
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats -->
+    <section class="quick-stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">25k+</span>
+                <span class="stat-text">Active Students</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">500k+</span>
+                <span class="stat-text">Quizzes Taken</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">99.9%</span>
+                <span class="stat-text">Uptime Reliability</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">AI</span>
+                <span class="stat-text">Proctoring Guard</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2>Why Choose QuizPortal?</h2>
+            <p>Our comprehensive suite of tools makes assessment seamless for both educators and students.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3>Intelligent Proctoring</h3>
+                <p>Advanced AI algorithms detect tab switching, multiple faces, and unauthorized behavior in real-time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <h3>Real-time Analytics</h3>
+                <p>Get instant insights into student performance with detailed reports and comparative analytics charts.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                </div>
+                <h3>Secure Assessments</h3>
+                <p>Complete lockdown mode prevents copying, pasting, or right-clicking during any high-stakes evaluation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 QuizPortal Platform. All rights reserved.</p>
+            <div style="display: flex; gap: 24px;">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Handle Get Started redirect to registration tab
+        if (localStorage.getItem('authTab') === 'register') {
+            // This logic will be handled if needed, or we just pass a hash
+        }
+    </script>
+</body>
+</html>

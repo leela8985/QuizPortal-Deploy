@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+build/
+dist/
+*.bak
+*.swp
+
+# Environment variables
+.env
+
+# Uploads (we use base64 now)
+uploads/
+
+# IDEs
+.vscode/
+.idea/
+.gemini/
+*.log
