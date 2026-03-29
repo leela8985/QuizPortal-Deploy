@@ -10,7 +10,11 @@ class Database:
     def get_db(self):
         if self._client is None:
             self._client = MongoClient(self.uri)
-        db_name = self.uri.split('/')[-1]
+        # Handle cases with query parameters (split by '?' then by '/')
+        db_name = self.uri.split('?')[0].split('/')[-1]
+        # Default to 'quiz_portal' if empty
+        if not db_name:
+            db_name = 'quiz_portal'
         return self._client[db_name]
 
     @property
